@@ -1,4 +1,4 @@
-return {
+{
 	"Abyssal Zenith",
 	"Ancient Archives",
 	"Ancient Isle",
@@ -23,6 +23,7 @@ return {
 	"Snowcap",
 	"Sunstone",
 	"Terrapin",
+	"The Depths",
 	"Veil of the Forsaken",
 	"Vertigo",
 	"Volcanic Vents"
