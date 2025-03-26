@@ -1,4 +1,4 @@
-{
+return {
 	"Abyssal Zenith",
 	"Ancient Archives",
 	"Ancient Isle",
