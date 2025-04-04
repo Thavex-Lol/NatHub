@@ -6,7 +6,7 @@ local function SendFischFinderWebhook(eventName, WEBHOOK_URL, jobId)
     local maxPlayers = game.Players.MaxPlayers
 
     local embed = {
-        title = "NatHub Fish Finder",
+        title = "NatHub Fisch Finder",
         description = "Enter this job id using nathub below to join.",
         color = 0x0080FF,
         fields = {
