@@ -5,14 +5,18 @@ local function SendFischFinderWebhook(eventName, WEBHOOK_URL, jobId)
     local players = #game.Players:GetPlayers()
     local maxPlayers = game.Players.MaxPlayers
 
+	local Seaplace = game:GetService("ReplicatedStorage"):FindFirstChild("Place")
+	local sea = (Seaplace and Seaplace.Value == "secondsea") and "Second Sea" or "First Sea"
+	
     local embed = {
         title = "NatHub Fisch Finder",
         description = "Enter this job id using nathub below to join.",
         color = 0x0080FF,
         fields = {
-            {name = "🎯 Event", value = "```" .. eventName .. "```"},
-            {name = "🆔 Server JobId", value = "```" .. jobId .. "```"},
-            {name = "👥 Players in Server", value = "```" .. players .. " / " .. maxPlayers .. "```", inline = true},
+            {name = "[🔎] Event", value = "```" .. eventName .. "```"},
+            {name = "[📂] JobId", value = "```" .. jobId .. "```"},
+            {name = "[👥] Players", value = "```" .. players .. " / " .. maxPlayers .. "```", inline = true},
+			{name = "[🌊] Sea Location", value = "```" .. sea .. "```", inline = true},
         },
         timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
     }
