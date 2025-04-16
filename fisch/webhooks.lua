@@ -23,7 +23,7 @@ local function SendFischFinderWebhook(eventName, WEBHOOK_URL, jobId)
 
     local webhookData = {
         username = "NatHub Fisch-Finder",
-        avatar_url = "https://media.discordapp.net/attachments/1348594194020831266/1350710374625705994/undefined_-_Imgur.jpg?ex=67d7ba90&is=67d66910&hm=1dfea8f4dff7582682e4803f13775faf71398c94a14f3d671bea8bdbcad286da&=&format=webp&width=561&height=561",
+        avatar_url = "https://media.discordapp.net/attachments/1360941350224396411/1361879600442904707/98e3df0604bdabe7b37ad4ccaf02ad0d.webp?ex=68005cb7&is=67ff0b37&hm=b742141585401eb1e6554eb0916ea757a7bcf8e9759ae181eb92493dd009ce56&=&format=webp",
         embeds = {embed}
     }
 
