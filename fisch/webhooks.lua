@@ -11,12 +11,12 @@ local function SendFischFinderWebhook(eventName, WEBHOOK_URL, jobId)
     local embed = {
         title = "NatHub Fisch Finder",
         description = "Enter this job id using nathub below to join.",
-        color = 0x0080FF,
+        color = 0x0e4ff,
         fields = {
-            {name = "[🔎] Event", value = "```" .. eventName .. "```"},
-            {name = "[📂] JobId", value = "```" .. jobId .. "```"},
-            {name = "[👥] Players", value = "```" .. players .. " / " .. maxPlayers .. "```", inline = true},
-			{name = "[🌊] Sea Location", value = "```" .. sea .. "```", inline = true},
+            {name = "<:events:1365290073767022693> Event", value = "```" .. eventName .. "```"},
+            {name = "<:folder:1365290079081205844> JobId", value = "```" .. jobId .. "```"},
+            {name = "<:players:1365290081937526834> Players", value = "```" .. players .. " / " .. maxPlayers .. "```", inline = true},
+			{name = "<:location:1365290076279541791> Sea", value = "```" .. sea .. "```", inline = true},
         },
         timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
     }
