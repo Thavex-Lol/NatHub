@@ -1,4 +1,7 @@
 local function WebhookStats(link)
+	local Players = game:GetService("Players")
+	local LocalPlayer = Players.LocalPlayer
+	local Character = LocalPlayer.Character
 	local HttpService = game:GetService("HttpService")
 	local function getAvatarThumbnail(userId)
 		local url = "https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" .. userId .. "&size=420x420&format=Png"
@@ -13,7 +16,7 @@ local function WebhookStats(link)
 			return nil
 		end
 	end
-	local stats = workspace.PlayerStats:FindFirstChild(LocalPlayer.Name).T.justalt969.Stats
+	local stats = workspace.PlayerStats:FindFirstChild(LocalPlayer.Name).T:FindFirstChild(LocalPlayer.Name).Stats
 	local avatar_url = getAvatarThumbnail(LocalPlayer.UserId)
 	local level = stats.realLevel and stats.realLevel.Value or 0
 	local streak = stats.tracker_streak and stats.tracker_streak.Value or 0
