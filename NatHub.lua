@@ -2,17 +2,17 @@ local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local supportedGames = {
-    [4777817887] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bladeball.lua" -- Bladeball
     [5750914919] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/fisch.lua", -- Fisch
     [7018190066] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/deadrails.lua", -- Dead Rails
     [6325068386] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/blr.lua", -- BLR
+	[4777817887] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bladeball.lua", -- Bladeball
     [7095682825] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/beaks.lua" -- Beaks
 }
 local gameNames = {
     [5750914919] = "Fisch", -- Fisch
     [7018190066] = "Dead Rails", -- Dead Rails
     [6325068386] = "Blue Lock Rivals", -- BLR
-    [4777817887] = "Blade Ball"
+	[4777817887] = "Blade Ball", -- Blade Ball
     [7095682825] = "Beaks" -- Beaks
 }
 local function sendExecute(ExecGame)
