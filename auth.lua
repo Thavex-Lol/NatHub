@@ -1,10 +1,3 @@
--- Luau (roblox) optimized adaptation of SHA-256
--- note: sha256 is great for fast hashing without collisions
---       this means: good for indexing, bad for security (read: bruteforcing, rainbow tables)
---       if you're looking for a password hashing algorithm, consider bcrypt
---       you shouldn't be hashing passwords on roblox games anyway
---       mew903, 2024
-
 local bytec = string.byte
 local charc = string.char
 local clockc = os.clock
