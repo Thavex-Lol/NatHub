@@ -207,7 +207,7 @@ local function sha256(input: string): (string, number)
     num2s(out[7], 4), num2s(out[8], 4),
   }, ''))
   cache[input] = hash
-  return hash, clockc() - timestamp
+  return hash
 end
 
 return sha256
