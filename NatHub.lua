@@ -51,10 +51,10 @@ if supportedGames[gameId] then
     )
 	if scriptID[gameId] then
 		local auth = loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/keysystem.lua"))()
-		local auth_status = auth(scriptID[gameId])
-	else
-		loadstring(game:HttpGet(supportedGames[gameId]))()
-	end
+		local auth_status = auth()
+        repeat task.wait() until auth_status.validated
+    end
+    loadstring(game:HttpGet(supportedGames[gameId]))()
 else
     game.StarterGui:SetCore(
         "SendNotification",
