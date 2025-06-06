@@ -51,7 +51,7 @@ if supportedGames[gameId] then
     )
 	if scriptID[gameId] then
 		local auth = loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/keysystem.lua"))()
-		local auth_status = auth()
+		local auth_status = auth(scriptID[gameId])
 	else
 		loadstring(game:HttpGet(supportedGames[gameId]))()
 	end
