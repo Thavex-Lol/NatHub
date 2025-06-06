@@ -1,4 +1,5 @@
 local supportedGames = {}
+local scriptID = {}
 if premium then
     supportedGames = {
         [7436755782] = "https://api.luarmor.net/files/v3/loaders/483d639ad74a7814ff1057d68cec56c2.lua", -- Grow a Garden
@@ -9,6 +10,10 @@ if premium then
         [7095682825] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/beaks.lua", -- Beaks
         [994732206] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bf.lua" -- Blox Fruit
     }
+	scriptID = {
+		[7436755782] = "483d639ad74a7814ff1057d68cec56c2", -- Grow a Garden
+		[7018190066] = "d3a76114c1ea182127b88170b6043d11", -- Dead Rails
+	}
 else
     supportedGames = {
         [7436755782] = "https://api.luarmor.net/files/v3/loaders/4370b97b96b7c9b80382809f3f1eb868.lua", -- Grow a Garden
@@ -19,6 +24,10 @@ else
         [7095682825] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/beaks.lua", -- Beaks
         [994732206] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bf.lua" -- Blox Fruit
     }
+	scriptID = {
+		[7436755782] = "4370b97b96b7c9b80382809f3f1eb868", -- Grow a Garden
+		[7018190066] = "b6ed8153f04ff71caab20c2341784abc", -- Dead Rails
+	}
 end
 local gameNames = {
     [5750914919] = "Fisch", -- Fisch
@@ -40,7 +49,12 @@ if supportedGames[gameId] then
             Duration = 5
         }
     )
-    loadstring(game:HttpGet(supportedGames[gameId]))()
+	if scriptID[gameId] then
+		local auth = loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/keysystem.lua"))()
+		local auth_status = auth()
+	else
+		loadstring(game:HttpGet(supportedGames[gameId]))()
+	end
 else
     game.StarterGui:SetCore(
         "SendNotification",
