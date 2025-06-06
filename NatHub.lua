@@ -16,8 +16,8 @@ if premium then
 	}
 else
     supportedGames = {
-        [7436755782] = "https://api.luarmor.net/files/v3/loaders/4370b97b96b7c9b80382809f3f1eb868.lua", -- Grow a Garden
-        [7018190066] = "https://api.luarmor.net/files/v3/loaders/b6ed8153f04ff71caab20c2341784abc.lua", -- Dead Rails
+        [7436755782] = "https://api.luarmor.net/files/v3/loaders/34446144ee7b84b6489dc10bed0621f4.lua", -- Grow a Garden
+        [7018190066] = "https://api.luarmor.net/files/v3/loaders/f7ec2413a67c660893ccbd8e14f56a34.lua", -- Dead Rails
         [5750914919] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/fisch.lua", -- Fisch
         [6325068386] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/blr.lua", -- BLR
         [4777817887] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bladeball.lua", -- Bladeball
@@ -25,8 +25,8 @@ else
         [994732206] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bf.lua" -- Blox Fruit
     }
 	scriptID = {
-		[7436755782] = "4370b97b96b7c9b80382809f3f1eb868", -- Grow a Garden
-		[7018190066] = "b6ed8153f04ff71caab20c2341784abc", -- Dead Rails
+		[7436755782] = "34446144ee7b84b6489dc10bed0621f4", -- Grow a Garden
+		[7018190066] = "f7ec2413a67c660893ccbd8e14f56a34", -- Dead Rails
 	}
 end
 local gameNames = {
