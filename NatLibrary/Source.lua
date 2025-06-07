@@ -1367,7 +1367,7 @@ end)
            return
         end
 
-        local number = math.floor((((self.maximum_value - self.minimum_value) * result) + self.minimum_value) * 10) / 10
+        local number = math.floor((((self.MaxValue - self.MinValue) * result) + self.MinValue) * 10) / 10
         local slider_size = math.clamp(result, 0.001, 0.999)
 
          self.slider.Box.Fill.UIGradient.Transparency = NumberSequence.new({
