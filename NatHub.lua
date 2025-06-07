@@ -25,7 +25,7 @@ else
         [994732206] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bf.lua" -- Blox Fruit
     }
 	scriptID = {
-		[7436755782] = "34446144ee7b84b6489dc10bed0621f4", -- Grow a Garden
+		--[7436755782] = "34446144ee7b84b6489dc10bed0621f4", -- Grow a Garden
 		[7018190066] = "f7ec2413a67c660893ccbd8e14f56a34", -- Dead Rails
 	}
 end
