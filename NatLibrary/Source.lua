@@ -1558,8 +1558,8 @@ end)
 			end)
 		end
 
-         function Module:Dropdown()
-			local section = self.Section == 'left' and left_section or right_section
+         function Module:create_dropdown()
+			local section = self.section == 'left' and left_section or right_section
 			local list_size = 6
 			local open = false
 
@@ -1750,7 +1750,7 @@ end)
 			function Dropdown:update()
 				Dropdown.clear()
 
-				for _, value in self.Values do
+				for _, value in self.Options do
 					list_size += 23
 
 					local new_option = option:Clone()
@@ -1767,7 +1767,7 @@ end)
 						if list_open then
 							dropdown.Box.TextLabel.Text = Library.Flags[self.Flag]
 						end
-						self.Callback(Library.Flags[self.Flag])
+						self.callback(Library.Flags[self.Flag])
 						Library.save_flags()
 
 						Dropdown.select_option({
@@ -1779,10 +1779,10 @@ end)
 			end
 
 			if not Library.Flags[self.Flag] then
-				Library.Flags[self.Flag] = self.Default
+				Library.Flags[self.Flag] = self.Option
 			end
 			
-			self.Callback(Library.Flags[self.Flag])
+			self.callback(Library.Flags[self.Flag])
 			Dropdown.update(self)
 
 			dropdown.MouseButton1Click:Connect(function()
@@ -1798,7 +1798,7 @@ end)
 			return Dropdown
 		end
 
-        function Module:create_image()
+        function Module:Image()
             local Section = self.Section == 'left' and left_Section or right_Section
 
         local image = Instance.new("ImageLabel")
