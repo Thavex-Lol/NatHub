@@ -1558,8 +1558,8 @@ end)
 			end)
 		end
 
-         function Module:create_dropdown()
-			local section = self.section == 'left' and left_section or right_section
+         function Module:Dropdown()
+			local Section = self.Section == 'left' and left_section or right_section
 			local list_size = 6
 			local open = false
 
