@@ -1558,8 +1558,8 @@ end)
 			end)
 		end
 
-         function Module:Dropdown()
-			local Section = self.Section == 'left' and left_section or right_section
+         function Module:create_dropdown()
+			local section = self.section == 'left' and left_section or right_section
 			local list_size = 6
 			local open = false
 
@@ -1680,12 +1680,12 @@ end)
 			Arrow.ZIndex = 2
 			Arrow.Image = "rbxassetid://17400678941"
 
-			dropdown.Box.TextLabel.Text = self.Title
+			dropdown.Box.TextLabel.Text = self.name
 
 			local Dropdown = {}
 
 			function Dropdown:open()
-				dropdown.Box.TextLabel.Text = Library.Flags[self.Flag]
+				dropdown.Box.TextLabel.Text = Library.Flags[self.flag]
 
 				TweenService:Create(dropdown.Box.Options, TweenInfo.new(0.4), {
 					Size = UDim2.new(0, 202, 0, list_size)
@@ -1701,7 +1701,7 @@ end)
 			end
 			
 			function Dropdown:close()
-				dropdown.Box.TextLabel.Text = self.Title
+				dropdown.Box.TextLabel.Text = self.name
 				TweenService:Create(dropdown.Box.Options, TweenInfo.new(0.4), {
 					Size = UDim2.new(0, 202, 0, 0)
 				}):Play()
@@ -1735,7 +1735,7 @@ end)
 						continue
 					end
 
-					if object.Text == Library.Flags[self.Flag] then
+					if object.Text == Library.Flags[self.flag] then
 						continue
 					end
 
@@ -1750,39 +1750,39 @@ end)
 			function Dropdown:update()
 				Dropdown.clear()
 
-				for _, value in self.Options do
+				for _, value in self.options do
 					list_size += 23
 
 					local new_option = option:Clone()
 					new_option.Parent = dropdown.Box.Options
 					new_option.Text = value
 	
-					if value == Library.Flags[self.Flag] then
+					if value == Library.Flags[self.flag] then
 						new_option.TextTransparency = 0
 					end
 	
 					new_option.MouseButton1Click:Connect(function()
-						Library.Flags[self.Flag] = value
+						Library.Flags[self.flag] = value
 						
 						if list_open then
-							dropdown.Box.TextLabel.Text = Library.Flags[self.Flag]
+							dropdown.Box.TextLabel.Text = Library.Flags[self.flag]
 						end
-						self.Callback(Library.Flags[self.Flag])
+						self.callback(Library.Flags[self.flag])
 						Library.save_flags()
 
 						Dropdown.select_option({
 							new_option = new_option,
-							flag = self.Flag
+							flag = self.flag
 						})
 					end)
 				end
 			end
 
-			if not Library.Flags[self.Flag] then
-				Library.Flags[self.Flag] = self.Option
+			if not Library.Flags[self.flag] then
+				Library.Flags[self.flag] = self.option
 			end
 			
-			self.Callback(Library.Flags[self.Flag])
+			self.callback(Library.Flags[self.flag])
 			Dropdown.update(self)
 
 			dropdown.MouseButton1Click:Connect(function()
