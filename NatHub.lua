@@ -26,7 +26,7 @@ else
     }
 	scriptID = {
 		--[7436755782] = "65c66a87b33565a9dea1a54b798b6b2a", -- Grow a Garden
-		[7018190066] = "a3e99a8c1a465fc973e7aa0dda0e220c", -- Dead Rails
+		--[7018190066] = "a3e99a8c1a465fc973e7aa0dda0e220c", -- Dead Rails
 	}
 end
 local gameNames = {
