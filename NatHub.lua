@@ -10,12 +10,12 @@ if premium then
         [7095682825] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/beaks.lua", -- Beaks
         [994732206] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bf.lua" -- Blox Fruit
     }
-	scriptID = {
-		[7436755782] = "483d639ad74a7814ff1057d68cec56c2", -- Grow a Garden
-		[7018190066] = "d3a76114c1ea182127b88170b6043d11", -- Dead Rails
+    scriptID = {
+        [7436755782] = "483d639ad74a7814ff1057d68cec56c2", -- Grow a Garden
+        [7018190066] = "d3a76114c1ea182127b88170b6043d11", -- Dead Rails
         [6325068386] = "a0ad31cf58a8bd98dd82fa1fb648290f", -- BLR
         [4777817887] = "d53370331c9ca16ce3479c3ac6ae5a78" -- BB
-	}
+    }
 else
     supportedGames = {
         [7436755782] = "https://api.luarmor.net/files/v4/loaders/65c66a87b33565a9dea1a54b798b6b2a.lua", -- Grow a Garden
@@ -26,12 +26,12 @@ else
         [7095682825] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/beaks.lua", -- Beaks
         [994732206] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bf.lua" -- Blox Fruit
     }
-	scriptID = {
-		--[7436755782] = "65c66a87b33565a9dea1a54b798b6b2a", -- Grow a Garden
-		[7018190066] = "a3e99a8c1a465fc973e7aa0dda0e220c", -- Dead Rails
+    scriptID = {
+        --[7436755782] = "65c66a87b33565a9dea1a54b798b6b2a", -- Grow a Garden
+        [7018190066] = "a3e99a8c1a465fc973e7aa0dda0e220c", -- Dead Rails
         [6325068386] = "50ba70185011d66f3ed97e4e7f50bd11", -- BLR
         [4777817887] = "6f48a7a95292a0885256d242900d81fb" -- BB
-	}
+    }
 end
 local gameNames = {
     [5750914919] = "Fisch", -- Fisch
@@ -53,13 +53,16 @@ if supportedGames[gameId] then
             Duration = 5
         }
     )
-	if scriptID[gameId] then
-        local auth_url = game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/keysystem.lua")
-		local auth = loadstring(auth_url)()
-		local auth_status = auth(scriptID[gameId])
-        repeat task.wait() until auth_status.validated
+    if scriptID[gameId] then
+        local auth_url =
+            game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/keysystem.lua")
+        local auth = loadstring(auth_url)()
+        local auth_status = auth(scriptID[gameId])
+        repeat
+            task.wait()
+        until auth_status.validated
     end
-    local game_url = game:HttpGet(supportedGames[gameId]) 
+    local game_url = game:HttpGet(supportedGames[gameId])
     loadstring(game_url)()
 else
     game.StarterGui:SetCore(
