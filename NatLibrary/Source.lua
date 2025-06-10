@@ -14,8 +14,8 @@ local Library = {
     drag_position = nil;
     start_position = nil;
 }
-if not isfolder("Rise") then
-    makefolder("Rise")
+if not isfolder("NatUI") then
+    makefolder("NatUI")
 end
 function Library:disconnect()
 	for _, value in Library.connections do
@@ -28,7 +28,7 @@ function Library:disconnect()
 end
 function Library:clear()
 	for _, object in CoreGui:GetChildren() do
-		if object.Name ~= "Rise" then
+		if object.Name ~= "NatUI" then
 			continue
 		end
 		object:Destroy()
@@ -42,12 +42,12 @@ end
 function Library:save_flags()
     if not Library.exist() then return end
     local flags = HttpService:JSONEncode(Library.Flags)
-    writefile(`Rise/{game.GameId}.lua`, flags)
+    writefile(`NatUI/{game.GameId}.lua`, flags)
 end
 
 function Library:load_flags()
-    if not isfile(`Rise/{game.GameId}.lua`) then Library.save_flags() return end
-    local flags = readfile(`Rise/{game.GameId}.lua`)
+    if not isfile(`NatUI/{game.GameId}.lua`) then Library.save_flags() return end
+    local flags = readfile(`NatUI/{game.GameId}.lua`)
     if not flags then Library.save_flags() return end
     Library.Flags = HttpService:JSONDecode(flags)
 end
@@ -107,7 +107,7 @@ function Library:visible()
 end
 function Library.CreateWindow(text,icon)
 	local container = Instance.new("ScreenGui")
-	container.Name = "Rise"
+	container.Name = "NatUI"
     container.Parent = CoreGui
     Library.core = container
 	local Shadow = Instance.new("ImageLabel")
@@ -169,7 +169,7 @@ function Library.CreateWindow(text,icon)
 	TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	TextLabel.BorderSizePixel = 0
 	TextLabel.Position = UDim2.new(0.0938254446, 0, 0.496794879, 0)
-	TextLabel.Size = UDim2.new(0, 75, 0, 16)
+	TextLabel.Size = UDim2.new(0, 100, 0, 16)
 	TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
 	TextLabel.Text = text 
 	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -334,7 +334,7 @@ function Library.CreateWindow(text,icon)
     mobile_button.BorderColor3 = Color3.fromRGB(0, 0, 0)
     mobile_button.BorderSizePixel = 0
     mobile_button.Position = UDim2.new(0.5, -300, 0.8, 33) -- Default position
-    mobile_button.Size = UDim2.new(0, 55, 0, 38)
+    mobile_button.Size = UDim2.new(0, 50, 0, 50)
     mobile_button.AutoButtonColor = false
     mobile_button.Modal = true
     mobile_button.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
@@ -454,7 +454,7 @@ function Library.CreateWindow(text,icon)
     Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Icon.BorderSizePixel = 0
     Icon.Position = UDim2.new(0.5, 0, 0.5, 0)
-    Icon.Size = UDim2.new(0, 30, 0, 30)
+    Icon.Size = UDim2.new(0, 40, 0, 40)
     Icon.Image = icon --// [rbxassetid://secret]
 
     if deviceType == "PC" then
@@ -1558,8 +1558,8 @@ end)
 			end)
 		end
 
-         function Module:create_dropdown()
-			local section = self.section == 'left' and left_section or right_section
+         function Module:Dropdown()
+			local Section = self.Section == 'left' and left_section or right_section
 			local list_size = 6
 			local open = false
 
@@ -1680,12 +1680,12 @@ end)
 			Arrow.ZIndex = 2
 			Arrow.Image = "rbxassetid://17400678941"
 
-			dropdown.Box.TextLabel.Text = self.name
+			dropdown.Box.TextLabel.Text = self.Title
 
 			local Dropdown = {}
 
 			function Dropdown:open()
-				dropdown.Box.TextLabel.Text = Library.Flags[self.flag]
+				dropdown.Box.TextLabel.Text = Library.Flags[self.Flag]
 
 				TweenService:Create(dropdown.Box.Options, TweenInfo.new(0.4), {
 					Size = UDim2.new(0, 202, 0, list_size)
@@ -1701,7 +1701,7 @@ end)
 			end
 			
 			function Dropdown:close()
-				dropdown.Box.TextLabel.Text = self.name
+				dropdown.Box.TextLabel.Text = self. Title
 				TweenService:Create(dropdown.Box.Options, TweenInfo.new(0.4), {
 					Size = UDim2.new(0, 202, 0, 0)
 				}):Play()
@@ -1750,39 +1750,39 @@ end)
 			function Dropdown:update()
 				Dropdown.clear()
 
-				for _, value in self.options do
+				for _, value in self.Options do
 					list_size += 23
 
 					local new_option = option:Clone()
 					new_option.Parent = dropdown.Box.Options
 					new_option.Text = value
 	
-					if value == Library.Flags[self.flag] then
+					if value == Library.Flags[self.Flag] then
 						new_option.TextTransparency = 0
 					end
 	
 					new_option.MouseButton1Click:Connect(function()
-						Library.Flags[self.flag] = value
+						Library.Flags[self.Flag] = value
 						
 						if list_open then
-							dropdown.Box.TextLabel.Text = Library.Flags[self.flag]
+							dropdown.Box.TextLabel.Text = Library.Flags[self.Flag]
 						end
-						self.callback(Library.Flags[self.flag])
+						self.callback(Library.Flags[self.Flag])
 						Library.save_flags()
 
 						Dropdown.select_option({
 							new_option = new_option,
-							flag = self.flag
+							Flag = self.Flag
 						})
 					end)
 				end
 			end
 
-			if not Library.Flags[self.flag] then
-				Library.Flags[self.flag] = self.option
+			if not Library.Flags[self.Flag] then
+				Library.Flags[self.Flag] = self.Option
 			end
 			
-			self.callback(Library.Flags[self.flag])
+			self.callback(Library.Flags[self.Flag])
 			Dropdown.update(self)
 
 			dropdown.MouseButton1Click:Connect(function()
