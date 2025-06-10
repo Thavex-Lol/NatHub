@@ -105,7 +105,7 @@ function Library:visible()
 		Library.close(self)
 	end
 end
-function Library.Window(title,icon)
+function Library.CreateWindow(title,icon)
 	local container = Instance.new("ScreenGui")
 	container.Name = "NatUI"
     container.Parent = CoreGui
