@@ -632,7 +632,7 @@ end)
 		end
 	end
 
-    function Tab:Tab(title)
+    function Tab:Tab()
         local tab = Instance.new("TextButton")
 		tab.Name = "Tab"
 		tab.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
@@ -662,7 +662,7 @@ end)
 		TextLabel.Size = UDim2.new(0, 124, 0, 15)
 		TextLabel.ZIndex = 3
 		TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-		TextLabel.Text = title
+		TextLabel.Text = self
 		TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TextLabel.TextScaled = true
 		TextLabel.TextSize = 14.000
