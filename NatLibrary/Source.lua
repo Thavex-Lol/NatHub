@@ -105,7 +105,7 @@ function Library:visible()
 		Library.close(self)
 	end
 end
-function Library.CreateWindow(text,icon)
+function Library.Window(title,icon)
 	local container = Instance.new("ScreenGui")
 	container.Name = "NatUI"
     container.Parent = CoreGui
@@ -159,8 +159,9 @@ function Library.CreateWindow(text,icon)
     	Logo.BorderSizePixel = 0
     	Logo.Position = UDim2.new(0.950000048, 0, 0.5, 0)
     	Logo.Size = UDim2.new(0, 20, 0, 20)
-    	Logo.Image = "rbxassetid://110130056211155"
-	Logo.ImageTransparency = 1
+    	Logo.Image = icon
+	Logo.ImageTransparency = 0
+	
 	local TextLabel = Instance.new("TextLabel")
 	TextLabel.Parent = Top
 	TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -171,7 +172,7 @@ function Library.CreateWindow(text,icon)
 	TextLabel.Position = UDim2.new(0.0938254446, 0, 0.496794879, 0)
 	TextLabel.Size = UDim2.new(0, 100, 0, 16)
 	TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-	TextLabel.Text = text 
+	TextLabel.Text = title
 	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	TextLabel.TextScaled = true
 	TextLabel.TextSize = 14.000
@@ -334,7 +335,7 @@ function Library.CreateWindow(text,icon)
     mobile_button.BorderColor3 = Color3.fromRGB(0, 0, 0)
     mobile_button.BorderSizePixel = 0
     mobile_button.Position = UDim2.new(0.5, -300, 0.8, 33) -- Default position
-    mobile_button.Size = UDim2.new(0, 50, 0, 50)
+    mobile_button.Size = UDim2.new(0, 55, 0, 55)
     mobile_button.AutoButtonColor = false
     mobile_button.Modal = true
     mobile_button.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
@@ -454,8 +455,8 @@ function Library.CreateWindow(text,icon)
     Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Icon.BorderSizePixel = 0
     Icon.Position = UDim2.new(0.5, 0, 0.5, 0)
-    Icon.Size = UDim2.new(0, 40, 0, 40)
-    Icon.Image = icon --// [rbxassetid://secret]
+    Icon.Size = UDim2.new(0, 45, 0, 45)
+    Icon.Image = "rbxassetid://134992015790041" --// [rbxassetid://secret]
 
     if deviceType == "PC" then
       mobile_button.Visible = false
@@ -561,20 +562,20 @@ end)
 
     local Tab = {}
 
-    function Tab:update_Sections()
-        self.left_Section.Visible = true
-        self.right_Section.Visible = true
+    function Tab:update_sections()
+        self.left_section.Visible = true
+        self.right_section.Visible = true
 
         for _, object in container.Container:GetChildren() do
             if not object.Name:find("Section") then
                 continue
             end
 
-            if object == self.left_Section then 
+            if object == self.left_section then 
                 continue
             end
 
-            if object == self.right_Section then
+            if object == self.right_section then
                 continue
             end
 
@@ -583,9 +584,9 @@ end)
     end
 
     function Tab:open_tab()
-		Tab.update_Sections({
-			left_Section = self.left_Section,
-			right_Section = self.right_Section
+		Tab.update_sections({
+			left_section = self.left_section,
+			right_section = self.right_section
 		})
 
 		TweenService:Create(self.tab.Fill, TweenInfo.new(0.4), {
@@ -631,7 +632,7 @@ end)
 		end
 	end
 
-    function Tab:AddTab(text)
+    function Tab:Tab(title)
         local tab = Instance.new("TextButton")
 		tab.Name = "Tab"
 		tab.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
@@ -661,7 +662,7 @@ end)
 		TextLabel.Size = UDim2.new(0, 124, 0, 15)
 		TextLabel.ZIndex = 3
 		TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-		TextLabel.Text = text
+		TextLabel.Text = title
 		TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TextLabel.TextScaled = true
 		TextLabel.TextSize = 14.000
@@ -716,71 +717,71 @@ end)
 		UIGradient.Rotation = 20
 		UIGradient.Parent = Fill
 
-		local left_Section = Instance.new("ScrollingFrame")
-		left_Section.Name = "LeftSection"
-		left_Section.Active = true
-		left_Section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		left_Section.BackgroundTransparency = 1.000
-		left_Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		left_Section.BorderSizePixel = 0
-		left_Section.Position = UDim2.new(0.326180249, 0, 0.126760557, 0)
-		left_Section.Size = UDim2.new(0, 215, 0, 372)
-		left_Section.AutomaticCanvasSize = Enum.AutomaticSize.XY
-		left_Section.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
-		left_Section.ScrollBarThickness = 0
+		local left_section = Instance.new("ScrollingFrame")
+		left_section.Name = "LeftSection"
+		left_section.Active = true
+		left_section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		left_section.BackgroundTransparency = 1.000
+		left_section.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		left_section.BorderSizePixel = 0
+		left_section.Position = UDim2.new(0.326180249, 0, 0.126760557, 0)
+		left_section.Size = UDim2.new(0, 215, 0, 372)
+		left_section.AutomaticCanvasSize = Enum.AutomaticSize.XY
+		left_section.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+		left_section.ScrollBarThickness = 0
 
-		local leftSectionlist = Instance.new("UIListLayout")
-		leftSectionlist.Parent = left_Section
-		leftSectionlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		leftSectionlist.SortOrder = Enum.SortOrder.LayoutOrder
-		leftSectionlist.Padding = UDim.new(0, 7)
+		local leftsectionlist = Instance.new("UIListLayout")
+		leftsectionlist.Parent = left_section
+		leftsectionlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		leftsectionlist.SortOrder = Enum.SortOrder.LayoutOrder
+		leftsectionlist.Padding = UDim.new(0, 7)
 
-		local right_Section = Instance.new("ScrollingFrame")
-		right_Section.Name = "RightSection"
-		right_Section.Active = true
-		right_Section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		right_Section.BackgroundTransparency = 1.000
-		right_Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		right_Section.BorderSizePixel = 0
-		right_Section.Position = UDim2.new(0.662374794, 0, 0.126760557, 0)
-		right_Section.Size = UDim2.new(0, 215, 0, 372)
-		right_Section.AutomaticCanvasSize = Enum.AutomaticSize.XY
-		right_Section.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
-		right_Section.ScrollBarThickness = 0
+		local right_section = Instance.new("ScrollingFrame")
+		right_section.Name = "RightSection"
+		right_section.Active = true
+		right_section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		right_section.BackgroundTransparency = 1.000
+		right_section.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		right_section.BorderSizePixel = 0
+		right_section.Position = UDim2.new(0.662374794, 0, 0.126760557, 0)
+		right_section.Size = UDim2.new(0, 215, 0, 372)
+		right_section.AutomaticCanvasSize = Enum.AutomaticSize.XY
+		right_section.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+		right_section.ScrollBarThickness = 0
 
-		local rightSectionlist = Instance.new("UIListLayout")
-		rightSectionlist.Parent = right_Section
+		local rightsectionlist = Instance.new("UIListLayout")
+		rightsectionlist.Parent = right_section
 
-		rightSectionlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		rightSectionlist.SortOrder = Enum.SortOrder.LayoutOrder
-		rightSectionlist.Padding = UDim.new(0, 7)
+		rightsectionlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		rightsectionlist.SortOrder = Enum.SortOrder.LayoutOrder
+		rightsectionlist.Padding = UDim.new(0, 7)
 
 		if container.Container:FindFirstChild('RightSection') then
-			left_Section.Visible = false
-			right_Section.Visible = false
+			left_section.Visible = false
+			right_section.Visible = false
 		else
 			Tab.open_tab({
 				tab = tab,
-				left_Section = left_Section,
-				right_Section = right_Section
+				left_section = left_section,
+				right_section = right_section
 			})
 		end
 
-		left_Section.Parent = container.Container
-		right_Section.Parent = container.Container
+		left_section.Parent = container.Container
+		right_section.Parent = container.Container
 
 		tab.MouseButton1Click:Connect(function()
 			Tab.open_tab({
 				tab = tab,
-				left_Section = left_Section,
-				right_Section = right_Section
+				left_section = left_section,
+				right_section = right_section
 			})
 		end)
 
         local Module = {}
 
         function Module:Section()
-			local Section = self.Section == 'left' and left_Section or right_Section
+			local Section = self.Section == 'left' and left_section or right_section
 
 			local title = Instance.new("TextLabel")
 			title.Name = "Title"
@@ -798,7 +799,7 @@ end)
 			title.TextSize = 14.000
 			title.TextWrapped = true
 			title.TextXAlignment = Enum.TextXAlignment.Left
-			title.Parent = Section
+			title.Parent = section
 			title.Text = self.Title
 		end
 
@@ -838,133 +839,12 @@ end)
 			end
 		end
 
-        function Module:Toggle()
-			local Section = self.Section == 'left' and left_Section or right_Section
-
-			local toggle = Instance.new("TextButton")
-			toggle.Name = "Toggle"
-			toggle.Parent = Section
-			toggle.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
-			toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			toggle.BorderSizePixel = 0
-			toggle.Size = UDim2.new(0, 215, 0, 37)
-			toggle.AutoButtonColor = false
-			toggle.Font = Enum.Font.SourceSans
-			toggle.Text = ""
-			toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
-			toggle.TextSize = 14.000
-			local UICorner = Instance.new("UICorner")
-			UICorner.CornerRadius = UDim.new(0, 10)
-			UICorner.Parent = toggle
-	
-			local Checkbox = Instance.new("Frame")
-			Checkbox.Name = "Checkbox"
-			Checkbox.Parent = toggle
-			Checkbox.AnchorPoint = Vector2.new(0.5, 0.5)
-			Checkbox.BackgroundColor3 = Color3.fromRGB(22, 23, 27)
-			Checkbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Checkbox.BorderSizePixel = 0
-			Checkbox.Position = UDim2.new(0.915000021, 0, 0.5, 0)
-			Checkbox.Size = UDim2.new(0, 17, 0, 17)		
-
-			local UICorner_2 = Instance.new("UICorner")
-			UICorner_2.CornerRadius = UDim.new(0, 4)
-			UICorner_2.Parent = Checkbox
-
-			local Glow = Instance.new("ImageLabel")
-			Glow.Name = "Glow"
-			Glow.Parent = Checkbox
-			Glow.AnchorPoint = Vector2.new(0.5, 0.5)
-			Glow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Glow.BackgroundTransparency = 1.000
-			Glow.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Glow.BorderSizePixel = 0
-			Glow.Position = UDim2.new(0.5, 0, 0.5, 0)
-			Glow.Size = UDim2.new(0, 27, 0, 27)
-			Glow.Image = "rbxassetid://17290798394"
-			Glow.ImageTransparency = 1.000
-
-			local Checkmark = Instance.new("ImageLabel")
-			Checkmark.Name = "Checkmark"
-			Checkmark.Parent = Checkbox
-			Checkmark.AnchorPoint = Vector2.new(0.5, 0.5)
-			Checkmark.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Checkmark.BackgroundTransparency = 1.000
-			Checkmark.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Checkmark.BorderSizePixel = 0
-			Checkmark.Position = UDim2.new(0.5, 0, 0.5, 0)
-			Checkmark.Size = UDim2.new(0, 15, 0, 15)
-			Checkmark.Image = "rbxassetid://9754130783"
-			Checkmark.ImageTransparency = 1.000
-			Checkmark.ZIndex = 2
-
-			local Fill = Instance.new("Frame")
-			Fill.Name = "Fill"
-			Fill.Parent = Checkbox
-			Fill.AnchorPoint = Vector2.new(0.5, 0.5)
-			Fill.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Fill.BackgroundTransparency = 1.000
-			Fill.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Fill.BorderSizePixel = 0
-			Fill.Position = UDim2.new(0.5, 0, 0.5, 0)
-			Fill.Size = UDim2.new(0, 17, 0, 17)
-
-			local UICorner_3 = Instance.new("UICorner")
-			UICorner_3.CornerRadius = UDim.new(0, 4)
-			UICorner_3.Parent = Fill
-
-			local UIGradient = Instance.new("UIGradient")
-			UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(66, 89, 182)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(37, 57, 137))}
-			UIGradient.Rotation = 20
-			UIGradient.Parent = Fill
-
-			local TextLabel = Instance.new("TextLabel")
-			TextLabel.Parent = toggle
-			TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel.BackgroundTransparency = 1.000
-			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			TextLabel.BorderSizePixel = 0
-			TextLabel.Position = UDim2.new(0.444953382, 0, 0.5, 0)
-			TextLabel.Size = UDim2.new(0, 164, 0, 15)
-			TextLabel.ZIndex = 2
-			TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel.TextScaled = true
-			TextLabel.TextSize = 14.000
-			TextLabel.TextWrapped = true
-			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-			TextLabel.Text = self.Title
-
-			if not Library.Flags[self.Flag] then
-				Library.Flags[self.Flag] = self.Default
-			end
-
-			self.Callback(Library.Flags[self.Flag])
-			
-			Module.update_toggle({
-				state = Library.Flags[self.Flag],
-				toggle = toggle
-			})
-
-			toggle.MouseButton1Click:Connect(function()
-				Library.Flags[self.Flag] = not Library.Flags[self.Flag]
-				Library.save_flags()
-
-				Module.update_toggle({
-					state = Library.Flags[self.Flag],
-					toggle = toggle
-				})
-
-				self.Callback(Library.Flags[self.Flag])
-			end)
-		end
-		function Module:Description_Toggle()
-			local Section = self.Section == 'left' and left_Section or right_Section
+		function Module:Toggle()
+			local Section = self.Section == 'left' and left_section or right_section
 
 			local toggle = Instance.new("TextButton")
 			toggle.Name = "Description Toggle"
-			toggle.Parent = Section
+			toggle.Parent = section
 			toggle.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
 			toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			toggle.BorderSizePixel = 0
@@ -1077,7 +957,7 @@ end)
 			TextLabel.Text = self.Description
 
 			if not Library.Flags[self.Flag] then
-				Library.Flags[self.Flag] = self.Default
+				Library.Flags[self.Flag] = self.Value
 			end
 
 			self.Callback(Library.Flags[self.Flag])
@@ -1100,11 +980,11 @@ end)
 			end)
 		end
 		function Module:Paragraph()
-			local Section = self.Section == 'left' and left_Section or right_Section
+			local Section = self.Section == 'left' and left_section or right_section
 
 			local Paragraph = Instance.new("TextButton")
 			Paragraph.Name = "Paragraph"
-			Paragraph.Parent = Section
+			Paragraph.Parent = section
 			Paragraph.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
 			Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Paragraph.BorderSizePixel = 0
@@ -1152,14 +1032,14 @@ end)
 			TextLabel.TextSize = 14.000
 			TextLabel.TextWrapped = true
 			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-			TextLabel.Text = self.Desc
+			TextLabel.Text = self.Description
 		end
-		function Module:create_verified()
-			local Section = self.Section == 'left' and left_Section or right_Section
+		function Module:Verified()
+			local Section = self.Section == 'left' and left_section or right_section
 
 			local Verified = Instance.new("TextButton")
 			Verified.Name = "Verified"
-			Verified.Parent = Section
+			Verified.Parent = section
 			Verified.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
 			Verified.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Verified.BorderSizePixel = 0
@@ -1220,80 +1100,26 @@ end)
 			TextLabel.TextSize = 14.000
 			TextLabel.TextWrapped = true
 			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-			TextLabel.Text = self.Desc
+			TextLabel.Text = self.Title
 		end
-		function Module:Line()
-			local Section = self.Section == 'left' and left_Section or right_Section
+		function Module:create_line()
+			local section = self.section == 'left' and left_section or right_section
 
 			local Space = Instance.new("Frame")
 			Space.Name = "Space"
-			Space.Parent = Section
+			Space.Parent = section
 			Space.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
 			Space.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Space.BorderSizePixel = 0
 			Space.Position = UDim2.new(0.296137333, 0, 0.0915492922, 0)
 			Space.Size = UDim2.new(0, 200, 0, 3)
 		end
-        function Module:Button()
-			local Section = self.Section == 'left' and left_Section or right_Section
-
-			local button = Instance.new("TextButton")
-			button.Name = "Button"
-			button.Parent = Section
-			button.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
-			button.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			button.BorderSizePixel = 0
-			button.Size = UDim2.new(0, 215, 0, 37)
-			button.AutoButtonColor = false
-			button.Font = Enum.Font.SourceSans
-			button.Text = ""
-			button.TextColor3 = Color3.fromRGB(0, 0, 0)
-			button.TextSize = 14.000
-			local UICorner = Instance.new("UICorner")
-			UICorner.CornerRadius = UDim.new(0, 10)
-			UICorner.Parent = button
-
-			local Buttonmark = Instance.new("ImageLabel")
-			Buttonmark.Name = "Buttonmark"
-			Buttonmark.Parent = button
-			Buttonmark.AnchorPoint = Vector2.new(0.5, 0.5) 
-			Buttonmark.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Buttonmark.BackgroundTransparency = 1.000
-			Buttonmark.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Buttonmark.BorderSizePixel = 0
-			Buttonmark.Position = UDim2.new(0.915, 0, 0.5, 0)
-			Buttonmark.Size = UDim2.new(0, 18, 0, 18)
-			Buttonmark.ZIndex = 2
-			Buttonmark.Image = "rbxassetid://3944703587"
-			
-			local TextLabel = Instance.new("TextLabel")
-			TextLabel.Parent = button
-			TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel.BackgroundTransparency = 1.000
-			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			TextLabel.BorderSizePixel = 0
-			TextLabel.Position = UDim2.new(0.45, 0, 0.5, 0)
-			TextLabel.Size = UDim2.new(0, 164, 0, 15)
-			TextLabel.ZIndex = 2
-			TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel.TextScaled = true
-			TextLabel.TextSize = 14.000
-			TextLabel.TextWrapped = true
-			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-			TextLabel.Text = self.Title
-
-			button.MouseButton1Click:Connect(function()
-	self.Callback()
-			end)
-		end
-		function Module:Description_Button()
-			local Section = self.Section == 'left' and left_Section or right_Section
+		function Module:Button()
+			local Section = self.Section == 'left' and left_section or right_section
 
 			local button = Instance.new("TextButton")
 			button.Name = "Description Button"
-			button.Parent = Section
+			button.Parent = section
 			button.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
 			button.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			button.BorderSizePixel = 0
@@ -1367,7 +1193,7 @@ end)
            return
         end
 
-        local number = math.floor((((self.MaxValue - self.MinValue) * result) + self.MinValue) * 10) / 10
+        local number = math.floor((((self.maximum_value - self.minimum_value) * result) + self.minimum_value) * 10) / 10
         local slider_size = math.clamp(result, 0.001, 0.999)
 
          self.slider.Box.Fill.UIGradient.Transparency = NumberSequence.new({
@@ -1403,7 +1229,7 @@ end)
 
         function Module:Slider()
 			local drag = false
-			local Section = self.Section == 'left' and left_Section or right_Section
+			local Section = self.Section == 'left' and left_section or right_section
 
 			local slider = Instance.new("TextButton")
 			slider.Name = "Slider"
@@ -1416,7 +1242,7 @@ end)
 			slider.Text = ""
 			slider.TextColor3 = Color3.fromRGB(0, 0, 0)
 			slider.TextSize = 14.000
-			slider.Parent = Section
+			slider.Parent = section
 
 			local UICorner = Instance.new("UICorner")
 			UICorner.CornerRadius = UDim.new(0, 10)
@@ -1526,10 +1352,10 @@ end)
 			Number.TextXAlignment = Enum.TextXAlignment.Right
 
 			TextLabel.Text = self.Title
-			Number.Text = self.Value
+			Number.Text = self.Default
 
 			if not Library.Flags[self.Flag] then
-				Library.Flags[self.Flag] = self.Value
+				Library.Flags[self.Flag] = self.Default
 			end
 
 			slider.Number.Text = Library.Flags[self.Flag]
@@ -1545,8 +1371,8 @@ end)
 					Flag = self.Flag,
 					Callback = self.Callback,
 
-					MaxValue = self.MaxValue,
-					MinValue = self.MinValue,
+					Max = self.Max,
+					Min = self.Min,
 				})
 			end)
 			
@@ -1558,7 +1384,7 @@ end)
 			end)
 		end
 
-         function Module:Dropdown()
+        function Module:Dropdown()
 			local Section = self.Section == 'left' and left_section or right_section
 			local list_size = 6
 			local open = false
@@ -1701,7 +1527,7 @@ end)
 			end
 			
 			function Dropdown:close()
-				dropdown.Box.TextLabel.Text = self. Title
+				dropdown.Box.TextLabel.Text = self.Title
 				TweenService:Create(dropdown.Box.Options, TweenInfo.new(0.4), {
 					Size = UDim2.new(0, 202, 0, 0)
 				}):Play()
@@ -1735,7 +1561,7 @@ end)
 						continue
 					end
 
-					if object.Text == Library.Flags[self.flag] then
+					if object.Text == Library.Flags[self.Flag] then
 						continue
 					end
 
@@ -1767,7 +1593,7 @@ end)
 						if list_open then
 							dropdown.Box.TextLabel.Text = Library.Flags[self.Flag]
 						end
-						self.callback(Library.Flags[self.Flag])
+						self.Callback(Library.Flags[self.Flag])
 						Library.save_flags()
 
 						Dropdown.select_option({
@@ -1798,26 +1624,8 @@ end)
 			return Dropdown
 		end
 
-        function Module:Image()
-            local Section = self.Section == 'left' and left_Section or right_Section
-
-        local image = Instance.new("ImageLabel")
-          image.Name = "Game"
-          image.Parent = Section
-          image.AnchorPoint = Vector2.new(0.5, 0.5) 
-          image.Position = UDim2.new(0.5, 0, 0.5, 0) 
-          image.Size = UDim2.new(0, 215, 0, 120)  
-          image.BackgroundTransparency = 1
-
-          image.Image = self.image
-
-          local UICorner = Instance.new("UICorner")
-          UICorner.CornerRadius = UDim.new(0, 7)  
-          UICorner.Parent = image
-        end
-
         function Module:Input()
-            local Section = self.Section == 'left' and left_Section or right_Section
+            local Section = self.Section == 'left' and left_section or right_section
 			local Textbox = {}
             local textbox = Instance.new("TextButton")
 			textbox.Name = "TextBox"
@@ -1830,7 +1638,7 @@ end)
 			textbox.Text = ""
 			textbox.TextColor3 = Color3.fromRGB(0, 0, 0)
 			textbox.TextSize = 14.000				
-            textbox.Parent = Section
+            textbox.Parent = section
 
 			local UICorner = Instance.new("UICorner")
 			UICorner.CornerRadius = UDim.new(0, 10)
@@ -1897,7 +1705,7 @@ end)
         return Textbox;
     end
 		function Module:Keybind()
-			local Section = self.Section == 'left' and left_Section or right_Section
+			local Section = self.Section == 'left' and left_section or right_section
 			local keybind = Instance.new("TextButton")
 			keybind.Name = "Keybind"
 			keybind.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
@@ -1910,7 +1718,7 @@ end)
 			keybind.Text = ""
 			keybind.TextColor3 = Color3.fromRGB(0, 0, 0)
 			keybind.TextSize = 14.000
-			keybind.Parent = Section
+			keybind.Parent = section
 
 			local UICorner = Instance.new("UICorner")
 
@@ -1966,10 +1774,10 @@ end)
 			TextLabel_2.TextWrapped = true
 
 			keybind.TextLabel.Text = self.Title
-			keybind.Box.TextLabel.Text = self.keycode.Name
+			keybind.Box.TextLabel.Text = self.Value
 
 			if not Library.Flags[self.Flag] then
-				Library.Flags[self.Flag] = self.keycode.Name
+				Library.Flags[self.Flag] = self.Value
 			end
 
 			keybind.MouseButton1Click:Connect(function()
