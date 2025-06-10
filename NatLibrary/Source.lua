@@ -1782,7 +1782,7 @@ end)
 				Library.Flags[self.Flag] = self.Option
 			end
 			
-			self.callback(Library.Flags[self.Flag])
+			self.Callback(Library.Flags[self.Flag])
 			Dropdown.update(self)
 
 			dropdown.MouseButton1Click:Connect(function()
