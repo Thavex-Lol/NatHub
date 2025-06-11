@@ -14,8 +14,8 @@ local Library = {
     drag_position = nil;
     start_position = nil;
 }
-if not isfolder("NatUI") then
-    makefolder("NatUI")
+if not isfolder("NathubUI") then
+    makefolder("NathubUI")
 end
 function Library:disconnect()
 	for _, value in Library.connections do
@@ -28,7 +28,7 @@ function Library:disconnect()
 end
 function Library:clear()
 	for _, object in CoreGui:GetChildren() do
-		if object.Name ~= "NatUI" then
+		if object.Name ~= "NathubUI" then
 			continue
 		end
 		object:Destroy()
@@ -39,19 +39,19 @@ function Library:exist()
     if not Library.core.Parent then return end
     return true
 end
-function Library:save_flags()
+function Library:saveConfigs()
     if not Library.exist() then return end
     local flags = HttpService:JSONEncode(Library.Flags)
-    writefile(`NatUI/{game.GameId}.lua`, flags)
+    writefile(`NathubUI/{game.GameId}.lua`, flags)
 end
 
-function Library:load_flags()
-    if not isfile(`NatUI/{game.GameId}.lua`) then Library.save_flags() return end
-    local flags = readfile(`NatUI/{game.GameId}.lua`)
-    if not flags then Library.save_flags() return end
+function Library:loadConfigs()
+    if not isfile(`NathubUI/{game.GameId}.lua`) then Library.saveConfigs() return end
+    local flags = readfile(`NathubUI/{game.GameId}.lua`)
+    if not flags then Library.saveConfigs() return end
     Library.Flags = HttpService:JSONDecode(flags)
 end
-Library.load_flags()
+Library.loadConfigs()
 Library.clear()
 function Library:open()
 	self.Container.Visible = true
@@ -105,9 +105,9 @@ function Library:visible()
 		Library.close(self)
 	end
 end
-function Library.CreateWindow(title,icon)
+function Library.CreateWindow(text)
 	local container = Instance.new("ScreenGui")
-	container.Name = "NatUI"
+	container.Name = "NathubUI"
     container.Parent = CoreGui
     Library.core = container
 	local Shadow = Instance.new("ImageLabel")
@@ -159,8 +159,8 @@ function Library.CreateWindow(title,icon)
     	Logo.BorderSizePixel = 0
     	Logo.Position = UDim2.new(0.950000048, 0, 0.5, 0)
     	Logo.Size = UDim2.new(0, 20, 0, 20)
-    	Logo.Image = icon
-	Logo.ImageTransparency = 0
+    	Logo.Image = "rbxassetid://110130056211155"
+	Logo.ImageTransparency = 1
 	
 	local TextLabel = Instance.new("TextLabel")
 	TextLabel.Parent = Top
@@ -170,9 +170,9 @@ function Library.CreateWindow(title,icon)
 	TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	TextLabel.BorderSizePixel = 0
 	TextLabel.Position = UDim2.new(0.0938254446, 0, 0.496794879, 0)
-	TextLabel.Size = UDim2.new(0, 100, 0, 16)
+	TextLabel.Size = UDim2.new(0, 75, 0, 16)
 	TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-	TextLabel.Text = title
+	TextLabel.Text = text
 	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	TextLabel.TextScaled = true
 	TextLabel.TextSize = 14.000
@@ -335,7 +335,7 @@ function Library.CreateWindow(title,icon)
     mobile_button.BorderColor3 = Color3.fromRGB(0, 0, 0)
     mobile_button.BorderSizePixel = 0
     mobile_button.Position = UDim2.new(0.5, -300, 0.8, 33) -- Default position
-    mobile_button.Size = UDim2.new(0, 55, 0, 55)
+    mobile_button.Size = UDim2.new(0, 55, 0, 38)
     mobile_button.AutoButtonColor = false
     mobile_button.Modal = true
     mobile_button.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
@@ -455,7 +455,7 @@ function Library.CreateWindow(title,icon)
     Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Icon.BorderSizePixel = 0
     Icon.Position = UDim2.new(0.5, 0, 0.5, 0)
-    Icon.Size = UDim2.new(0, 45, 0, 45)
+    Icon.Size = UDim2.new(0, 30, 0, 30)
     Icon.Image = "rbxassetid://134992015790041" --// [rbxassetid://secret]
 
     if deviceType == "PC" then
@@ -632,7 +632,7 @@ end)
 		end
 	end
 
-    function Tab:Tab()
+    function Tab:AddTab()
         local tab = Instance.new("TextButton")
 		tab.Name = "Tab"
 		tab.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
@@ -838,7 +838,6 @@ end)
 				Module.disable_toggle(self.toggle)
 			end
 		end
-
 		function Module:Toggle()
 			local Section = self.Section == 'left' and left_section or right_section
 
@@ -957,7 +956,7 @@ end)
 			TextLabel.Text = self.Description
 
 			if not Library.Flags[self.Flag] then
-				Library.Flags[self.Flag] = self.Value
+				Library.Flags[self.Flag] = self.Default
 			end
 
 			self.Callback(Library.Flags[self.Flag])
@@ -969,7 +968,7 @@ end)
 
 			toggle.MouseButton1Click:Connect(function()
 				Library.Flags[self.Flag] = not Library.Flags[self.Flag]
-				Library.save_flags()
+				Library.saveConfigs()
 
 				Module.update_toggle({
 					state = Library.Flags[self.Flag],
@@ -1032,7 +1031,7 @@ end)
 			TextLabel.TextSize = 14.000
 			TextLabel.TextWrapped = true
 			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-			TextLabel.Text = self.Description
+			TextLabel.Text = self.Content
 		end
 		function Module:Button()
 			local Section = self.Section == 'left' and left_section or right_section
@@ -1299,13 +1298,13 @@ end)
 			UserInputService.InputEnded:Connect(function(input: InputObject, process: boolean)
 				if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 					Library.slider_drag = false
-					Library.save_flags()
+					Library.saveConfigs()
 				end
 			end)
 		end
 
         function Module:Dropdown()
-			local Section = self.Section == 'left' and left_section or right_section
+			local section = self.section == 'left' and left_section or right_section
 			local list_size = 6
 			local open = false
 
@@ -1426,7 +1425,7 @@ end)
 			Arrow.ZIndex = 2
 			Arrow.Image = "rbxassetid://17400678941"
 
-			dropdown.Box.TextLabel.Text = self.Title
+			dropdown.Box.TextLabel.Text = self.name
 
 			local Dropdown = {}
 
@@ -1447,7 +1446,7 @@ end)
 			end
 			
 			function Dropdown:close()
-				dropdown.Box.TextLabel.Text = self.Title
+				dropdown.Box.TextLabel.Text = self.name
 				TweenService:Create(dropdown.Box.Options, TweenInfo.new(0.4), {
 					Size = UDim2.new(0, 202, 0, 0)
 				}):Play()
@@ -1496,7 +1495,7 @@ end)
 			function Dropdown:update()
 				Dropdown.clear()
 
-				for _, value in self.Options do
+				for _, value in self.options do
 					list_size += 23
 
 					local new_option = option:Clone()
@@ -1514,18 +1513,18 @@ end)
 							dropdown.Box.TextLabel.Text = Library.Flags[self.Flag]
 						end
 						self.Callback(Library.Flags[self.Flag])
-						Library.save_flags()
+						Library.saveConfigs()
 
 						Dropdown.select_option({
 							new_option = new_option,
-							Flag = self.Flag
+							flag = self.Flag
 						})
 					end)
 				end
 			end
 
 			if not Library.Flags[self.Flag] then
-				Library.Flags[self.Flag] = self.Option
+				Library.Flags[self.Flag] = self.option
 			end
 			
 			self.Callback(Library.Flags[self.Flag])
@@ -1543,7 +1542,6 @@ end)
 
 			return Dropdown
 		end
-
         function Module:Input()
             local Section = self.Section == 'left' and left_section or right_section
 			local Textbox = {}
@@ -1614,7 +1612,7 @@ end)
 			self.Callback(Library.Flags[self.Flag])
 			textbox.Box.TextHolder.FocusLost:Connect(function()
 				self.Callback(textbox.Box.TextHolder.Text)
-				Library.save_flags()
+				Library.saveConfigs()
 			end)
 
 			function Textbox:update(text)
@@ -1703,16 +1701,16 @@ end)
 			keybind.MouseButton1Click:Connect(function()
 				keybind.Box.TextLabel.Text = '...'
 				local a,b = UserInputService.InputBegan:Wait();
-				if a.KeyCode.Name ~= 'Unknown' then
-					keybind.Box.TextLabel.Text = a.KeyCode.Name
-					Library.Flags[self.Flag] = a.KeyCode.Name
-					Library.save_flags()
+				if a.Value ~= 'Unknown' then
+					keybind.Box.TextLabel.Text = a.Value
+					Library.Flags[self.Flag] = a.Value
+					Library.saveConfigs()
 				end
 			end)
 
 			UserInputService.InputBegan:Connect(function(current, pressed)
 				if not pressed then
-					if current.KeyCode.Name == Library.Flags[self.Flag] then
+					if current.Value == Library.Flags[self.Flag] then
 						self.Callback(Library.Flags[self.Flag])
 					end
 				end
