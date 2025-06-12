@@ -501,7 +501,7 @@ function Library:remove_table_value(__table: any, table_value: string)
     end
 end
 
-function Library:CreateWindow(Title: string, Icon: string)
+function Library:CreateWindow(text,icon)
     local old_NathubUI = CoreGui:FindFirstChild('NathubUI')
 
     if old_NathubUI then
@@ -570,7 +570,7 @@ function Library:CreateWindow(Title: string, Icon: string)
     ClientName.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
     ClientName.TextColor3 = Color3.fromRGB(152, 181, 255)
     ClientName.TextTransparency = 0.20000000298023224
-    ClientName.Text = Title
+    ClientName.Text = text
     ClientName.Name = 'ClientName'
     ClientName.Size = UDim2.new(0, 31, 0, 13)
     ClientName.AnchorPoint = Vector2.new(0, 0.5)
@@ -608,7 +608,7 @@ function Library:CreateWindow(Title: string, Icon: string)
     Icon.ScaleType = Enum.ScaleType.Fit
     Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Icon.AnchorPoint = Vector2.new(0, 0.5)
-    Icon.Image = Icon
+    Icon.Image = icon
     Icon.BackgroundTransparency = 1
     Icon.Position = UDim2.new(0.02500000037252903, 0, 0.054999999701976776, 0)
     Icon.Name = 'Icon'
